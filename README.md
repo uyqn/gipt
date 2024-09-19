@@ -2,6 +2,11 @@
 ![Build Status](https://github.com/uyqn/gipt/actions/workflows/ci.yml/badge.svg)
 ![Coverage Status](https://coveralls.io/repos/github/uyqn/gipt/badge.svg?branch=main)
 ![GitHub Release](https://img.shields.io/github/v/release/uyqn/gipt)
+![License](https://img.shields.io/github/license/uyqn/gipt)
+![Contributors](https://img.shields.io/github/contributors/uyqn/gipt)
+![Last Commit](https://img.shields.io/github/last-commit/uyqn/gipt)
+![GitHub issues](https://img.shields.io/github/issues/uyqn/gipt)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/uyqn/gipt)
 
 ## Description
 GIPT is a project that aims utilize OpenAI's GPT to generate commit messages that follows the specification of [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
