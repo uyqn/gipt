@@ -9,13 +9,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check PR for linked issues
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const prBody = github.context.payload.pull_request.body;
-            const issueLinkPattern = /Closes #\d+/;
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-            if (!issueLinkPattern.test(prBody)) {
-              core.setFailed('Pull request must link to an issue (e.g., "Closes #123").');
-            }
+      # Step 2: Use action-pr-body-check to ensure issue is linked
+      - name: Check for linked issue
+        uses: mszostok/action-pr-body-check@v1
+        with:
+          pattern: 'Closes #\\d+'  # Pattern to match issue link
