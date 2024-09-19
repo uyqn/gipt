@@ -13,8 +13,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      # Step 2: Check PR for linked issue using LottieFiles/pr-body-labeler-action
+      # Step 2: Run the custom issue-link-checker action
       - name: Check for linked issue
-        uses: LottieFiles/pr-body-labeler-action@v1
+        uses: ./.github/actions/issue-link-checker
         with:
-          pr-body-keywords: 'Closes #\\d+'  # Pattern to match issue link
+          pattern: 'Closes #\\d+'"
