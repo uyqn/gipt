@@ -13,7 +13,7 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const prBody = github.event.pull_request.body;
+            const prBody = github.context.payload.pull_request.body;
             const issueLinkPattern = /Closes #\d+/;
 
             if (!issueLinkPattern.test(prBody)) {
