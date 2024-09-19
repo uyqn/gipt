@@ -13,8 +13,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      # Step 2: Use action-pr-body-check to ensure issue is linked
+      # Step 2: Check PR for linked issue using LottieFiles/pr-body-labeler-action
       - name: Check for linked issue
-        uses: mszostok/action-pr-body-check@v1
+        uses: LottieFiles/pr-body-labeler-action@v1
         with:
-          pattern: 'Closes #\\d+'  # Pattern to match issue link
+          pr-body-keywords: 'Closes #\\d+'  # Pattern to match issue link
