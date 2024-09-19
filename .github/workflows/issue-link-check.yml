@@ -1,0 +1,21 @@
+name: Ensure PR is linked to an Issue
+
+on:
+  pull_request:
+    types: [opened, edited]
+
+jobs:
+  check-pr:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check PR for linked issues
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const prBody = github.event.pull_request.body;
+            const issueLinkPattern = /Closes #\d+/;
+
+            if (!issueLinkPattern.test(prBody)) {
+              core.setFailed('Pull request must link to an issue (e.g., "Closes #123").');
+            }
