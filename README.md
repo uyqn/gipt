@@ -8,6 +8,13 @@
 ![GitHub issues](https://img.shields.io/github/issues/uyqn/gipt)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/uyqn/gipt)
 
+## Tech Stack
+![Kotlin](https://img.shields.io/badge/Kotlin-%230095D5.svg?style=for-the-badge&logo=kotlin&logoColor=white)
+![Gradle](https://img.shields.io/badge/Gradle-%2302303A.svg?style=for-the-badge&logo=gradle&logoColor=white)
+![OpenAI](https://img.shields.io/badge/OpenAI-%23007ACC.svg?style=for-the-badge&logo=openai&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-%232671E5.svg?style=for-the-badge&logo=github-actions&logoColor=white)
+
 ## Description
 GIPT is a project that aims utilize OpenAI's GPT to generate commit messages that follows the specification of [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
