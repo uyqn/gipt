@@ -1,5 +1,6 @@
 plugins {
     kotlin("jvm") version "1.9.22"
+    id("org.jlleitschuh.gradle.ktlint") version "10.2.0"
     application
 }
 
@@ -8,6 +9,10 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+}
+
+ktlint {
+    version.set("0.43.0")
 }
 
 dependencies {
