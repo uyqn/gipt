@@ -2,7 +2,7 @@ name: Ensure PR is linked to an Issue
 
 on:
   pull_request:
-    types: [opened, edited]
+    types: [opened, edited, synchronize]
 
 jobs:
   check-pr:
