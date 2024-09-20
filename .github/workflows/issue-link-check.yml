@@ -13,8 +13,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      # Step 2: Run the custom issue-link-checker action
+      # Step 2: Set up Node.js (Install dependencies)
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      # Step 3: Install dependencies (this installs packages like @actions/core)
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Run the custom issue-link-checker action
       - name: Check for linked issue
         uses: ./.github/actions/issue-link-checker
         with:
-          pattern: 'Closes #\\d+'"
+          pattern: 'Closes #\\d+'
