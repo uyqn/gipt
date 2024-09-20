@@ -1,6 +1,6 @@
 # GIPT
 ![Build Status](https://github.com/uyqn/gipt/actions/workflows/ci.yml/badge.svg)
-![Codecov Coverage](https://codecov.io/gh/username/repo/branch/main/graph/badge.svg)
+![Codecov Coverage](https://codecov.io/gh/uyqn/gipt/branch/main/graph/badge.svg)
 ![GitHub Release](https://img.shields.io/github/v/release/uyqn/gipt)
 ![License](https://img.shields.io/github/license/uyqn/gipt)
 ![Contributors](https://img.shields.io/github/contributors/uyqn/gipt)
