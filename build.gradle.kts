@@ -31,6 +31,10 @@ tasks.test {
     finalizedBy(tasks.jacocoTestReport)
 }
 
+jacoco {
+    toolVersion = "0.8.8"
+}
+
 tasks.jacocoTestReport {
     dependsOn(tasks.test)
     reports {

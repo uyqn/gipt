@@ -41,15 +41,7 @@ jobs:
       - name: Build and run tests
         run: ./gradlew test jacocoTestReport
 
-      # Step 6: Download jacoco-to-lcov-reporter
-      - name: Download jacoco-to-lcov-reporter
-        run: wget https://raw.githubusercontent.com/davidramos-om/jacoco-lcov/master/jacoco-to-lcov
-
-      # Step 7: Convert the JaCoCo XML report to LCOV format
-      - name: Convert JaCoCo XML to LCOV
-        run: bash jacoco-to-lcov build/reports/jacoco/test/jacocoTestReport.xml > build/reports/jacoco/test/jacocoTestReport.lcov
-
-      # Step 8: Upload coverage to Coveralls
+      # Step 6: Upload coverage to Coveralls
       - name: Upload coverage to Coveralls
         uses: coverallsapp/github-action@v1
         with:
