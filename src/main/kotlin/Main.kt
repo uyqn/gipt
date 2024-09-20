@@ -1,16 +1,9 @@
 package no.uyqn
 
-import no.uyqn.git.GitFacade
-import org.eclipse.jgit.api.Git
-import org.eclipse.jgit.storage.file.FileRepositoryBuilder
-import java.io.File
+import io.github.cdimascio.dotenv.dotenv
+import no.uyqn.config.Configuration
 
-fun main(args: Array<String>) {
-    val repository =
-        FileRepositoryBuilder()
-            .findGitDir(File(args[0]))
-            .build()
-    val git = GitFacade(Git(repository))
-
-    println(git.getDiff())
+fun main() {
+    val config = Configuration(dotenv = dotenv { directory = System.getProperty("user.dir") })
+    println(config.getEnvironmentVariable(Configuration.OPENAI_API_KEY))
 }
