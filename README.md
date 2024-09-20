@@ -19,7 +19,7 @@
 GIPT is a project that aims utilize OpenAI's GPT to generate commit messages that follows the specification of [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
 ## Installation
-Clone the repository using either of the following commands:
+Clone the repository using either of the following commands in your terminal (e.g. Git Bash, WSL, or Terminal):
 1. Using HTTPS:
     ```bash
     git clone https://github.com/uyqn/gipt.git
@@ -32,23 +32,24 @@ Clone the repository using either of the following commands:
     ```bash
     gh repo clone uyqn/gipt
     ```
-   
-## Usage
-In order to use the project, follow the following steps for your respective operating system:
-### macOS
-1. Change directory to the project folder:
+4. Change directory to the project folder:
     ```bash
     cd gipt
     ```
-2. Create a bin directory in your home directory:
+5. Create a bin directory in your home directory:
     ```bash
     mkdir ~/bin
     ```
-3. Add the bin directory to your PATH:
-    ```bash
-    echo 'export PATH=$HOME/bin:/usr/local/bin:$PATH' >> ~/.zshrc
-    ```
-4. Create a script (e.g gipt) that will be used to run the project in the bin directory:
+6. Add the bin directory to your PATH:
+   - For macOS:
+       ```bash
+       echo 'export PATH=$HOME/bin:/usr/local/bin:$PATH' >> ~/.zshrc
+       ```
+   - For Linux / WSL / Git Bash: 
+        ```bash
+        echo 'export PATH=$HOME/bin:/usr/local/bin:$PATH' >> ~/.bashrc
+        ```
+7. Create a script (e.g gipt) that will be used to run the project in the bin directory:
     ```bash
    cat << EOF > ~/bin/gipt
     #!/bin/bash
@@ -56,23 +57,21 @@ In order to use the project, follow the following steps for your respective oper
     $(pwd)/gradlew  -p $(pwd)/ run --args="\$(pwd) \$*"
     EOF
     ```
-5. Make the script executable:
+8. Make the script executable:
     ```bash
     chmod +x ~/bin/gipt
     ```
-6. Reload your shell:
-    ```bash
-    source ~/.zshrc
-    ```
-7. Run the project:
-    ```bash
-    gipt
-    ```
-   
-### Windows
-use Git Bash or WSL and run the same commands as macOS. Except, when reloading the shell, use the following command:
+9. Reload your shell:
+   - For macOS:
+       ```bash
+       source ~/.zshrc
+       ```
+   - For Linux / WSL / Git Bash:
+        ```bash
+        source ~/.bashrc
+        ```
+## Usage
+If you have been following the instructions provided in the [installation](#installation) section, you can now run the project using the following command:
 ```bash
-source ~/.bashrc
+gipt
 ```
-   
-   
