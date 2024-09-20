@@ -1,0 +1,12 @@
+# .github/actions/issue-link-checker/action.yml
+
+name: 'Issue Link Checker'
+description: 'Check if a pull request is linked to an issue'
+inputs:
+  pattern:
+    description: 'The regex pattern to check for issue references'
+    required: true
+    default: 'Closes #\\d+'
+runs:
+  using: 'node12'
+  main: 'index.js'
