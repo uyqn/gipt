@@ -17,11 +17,13 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: '20'  # Use the correct Node.js version
 
-      # Step 3: Install dependencies (this installs packages like @actions/core)
+      # Step 3: Install dependencies for the custom action
       - name: Install dependencies
-        run: npm install
+        run: |
+          cd .github/actions/issue-link-checker
+          npm install
 
       # Step 4: Run the custom issue-link-checker action
       - name: Check for linked issue
