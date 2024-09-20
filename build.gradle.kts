@@ -12,7 +12,7 @@ repositories {
 }
 
 ktlint {
-    version.set("0.43.0")
+    version.set("0.43.1")
 }
 
 dependencies {
@@ -22,6 +22,7 @@ dependencies {
     implementation("org.slf4j:slf4j-simple:2.0.12")
 
     testImplementation("org.jetbrains.kotlin:kotlin-test")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
 }
 
 tasks.test {
