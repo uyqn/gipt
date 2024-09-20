@@ -6,9 +6,10 @@ import org.eclipse.jgit.storage.file.FileRepositoryBuilder
 import java.io.File
 
 fun main(args: Array<String>) {
-    val repository = FileRepositoryBuilder()
-        .findGitDir(File(args[0]))
-        .build()
+    val repository =
+        FileRepositoryBuilder()
+            .findGitDir(File(args[0]))
+            .build()
     val git = GitFacade(Git(repository))
 
     println(git.getDiff())
