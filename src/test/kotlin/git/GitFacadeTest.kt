@@ -15,7 +15,9 @@ class GitFacadeTest {
     private lateinit var gitFacade: GitFacade
 
     @BeforeEach
-    fun setUp(@TempDir tempDir: Path) {
+    fun setUp(
+        @TempDir tempDir: Path,
+    ) {
         repoDir = tempDir.toFile()
         git = Git.init().setDirectory(repoDir).call()
         gitFacade = GitFacade(git)

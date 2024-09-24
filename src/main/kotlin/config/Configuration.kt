@@ -9,5 +9,6 @@ class Configuration(
 
     companion object {
         const val OPENAI_API_KEY = "OPENAI_API_KEY"
+        const val AZURE_OPENAI_RESOURCE = "AZURE_OPENAI_RESOURCE"
     }
 }
