@@ -22,9 +22,6 @@ data class ChatRequest(
 
 @Serializable
 data class Choice(
-    @SerialName("content_filter_results") val contentFilterResults: ContentFilterResults,
-    @SerialName("finish_reason") val finishReason: String,
-    val index: Int,
     val message: Message,
 )
 
@@ -35,29 +32,7 @@ data class ChatResponse(
     val id: String,
     val model: String,
     val `object`: String,
-    @SerialName("prompt_filter_results") val promptFilterResults: List<PromptFilterResult>,
-    @SerialName("system_fingerprint") val systemFingerprint: String,
     val usage: Usage,
-)
-
-@Serializable
-data class ContentFilterResults(
-    val hate: FilterDetail,
-    @SerialName("self_harm") val selfHarm: FilterDetail,
-    val sexual: FilterDetail,
-    val violence: FilterDetail,
-)
-
-@Serializable
-data class FilterDetail(
-    val filtered: Boolean,
-    val severity: String,
-)
-
-@Serializable
-data class PromptFilterResult(
-    @SerialName("prompt_index") val promptIndex: Int,
-    @SerialName("content_filter_results") val contentFilterResults: ContentFilterResults,
 )
 
 @Serializable

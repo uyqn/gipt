@@ -4,9 +4,8 @@ import no.uyqn.openai.OpenAiModel
 import no.uyqn.openai.clients.data.ChatRequest
 import no.uyqn.openai.clients.data.ChatResponse
 import no.uyqn.openai.clients.data.Choice
-import no.uyqn.openai.clients.data.ContentFilterResults
-import no.uyqn.openai.clients.data.FilterDetail
 import no.uyqn.openai.clients.data.Message
+import no.uyqn.openai.clients.data.MessageRole
 import no.uyqn.openai.clients.data.Usage
 
 class MockOpenAiClientImpl(
@@ -27,36 +26,25 @@ class MockOpenAiClientImpl(
         """.trimIndent()
 
     override suspend fun chat(request: ChatRequest): ChatResponse {
-        val response =
-            ChatResponse(
-                choices =
-                    request.messages.map {
-                        Choice(
-                            contentFilterResults =
-                                ContentFilterResults(
-                                    FilterDetail(true, ""),
-                                    FilterDetail(true, ""),
-                                    FilterDetail(true, ""),
-                                    FilterDetail(true, ""),
-                                ),
-                            finishReason = "stop",
-                            index = 0,
-                            message = Message(role = "assistant", content = mockMessage),
-                        )
-                    },
-                created = 0,
-                id = "mock-id",
-                model = model,
-                `object` = "chat.completion",
-                promptFilterResults = emptyList(),
-                systemFingerprint = "mock-fingerprint",
-                usage =
-                    Usage(
-                        0,
-                        0,
-                        0,
-                    ),
-            )
-        return response
+        val message = Message(role = MessageRole.ASSISTANT, content = mockMessage)
+        return createMockChatResponse(
+            choices = listOf(Choice(message = message)),
+            model = model,
+        )
+    }
+
+    companion object {
+        fun createMockChatResponse(
+            choices: List<Choice>,
+            model: String,
+            usage: Usage = Usage(0, 0, 0),
+        ) = ChatResponse(
+            choices = choices,
+            created = 1677858242,
+            id = "mock-id",
+            model = model,
+            `object` = "chat.completion",
+            usage = usage,
+        )
     }
 }
