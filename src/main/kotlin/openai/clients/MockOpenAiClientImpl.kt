@@ -1,6 +1,13 @@
 package no.uyqn.openai.clients
 
 import no.uyqn.openai.OpenAiModel
+import no.uyqn.openai.clients.models.ChatRequest
+import no.uyqn.openai.clients.models.ChatResponse
+import no.uyqn.openai.clients.models.Choice
+import no.uyqn.openai.clients.models.ContentFilterResults
+import no.uyqn.openai.clients.models.FilterDetail
+import no.uyqn.openai.clients.models.Message
+import no.uyqn.openai.clients.models.Usage
 
 class MockOpenAiClientImpl(
     private val model: String = OpenAiModel.GPT4O_MINI,

@@ -1,7 +1,7 @@
 package openai.clients
 
-import no.uyqn.openai.clients.Message
-import no.uyqn.openai.clients.MessageRole
+import no.uyqn.openai.clients.models.Message
+import no.uyqn.openai.clients.models.MessageRole
 import org.junit.jupiter.api.Test
 
 class MessageTest {

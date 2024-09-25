@@ -9,6 +9,8 @@ import io.ktor.http.contentType
 import no.uyqn.config.Configuration
 import no.uyqn.config.EnvironmentalVariable
 import no.uyqn.openai.OpenAiModel
+import no.uyqn.openai.clients.models.ChatRequest
+import no.uyqn.openai.clients.models.ChatResponse
 
 class AzureOpenAiClientImpl(
     private val configuration: Configuration,

@@ -4,10 +4,10 @@ import io.github.cdimascio.dotenv.dotenv
 import kotlinx.coroutines.runBlocking
 import no.uyqn.config.Configuration
 import no.uyqn.git.GitFacade
-import no.uyqn.openai.clients.ChatRequest
-import no.uyqn.openai.clients.Message
-import no.uyqn.openai.clients.MessageRole
 import no.uyqn.openai.clients.OpenAiClient
+import no.uyqn.openai.clients.models.ChatRequest
+import no.uyqn.openai.clients.models.Message
+import no.uyqn.openai.clients.models.MessageRole
 import org.eclipse.jgit.api.Git
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder
 import java.io.File

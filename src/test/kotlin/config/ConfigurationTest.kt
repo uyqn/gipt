@@ -46,4 +46,10 @@ class ConfigurationTest {
 
         assertTrue(exception.toString().contains(key))
     }
+
+    @Test
+    fun `should create HttpClient`() {
+        val httpClient = configuration.createHttpClient()
+        assertTrue(httpClient.engine.toString().contains("CIO"))
+    }
 }
