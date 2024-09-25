@@ -2,6 +2,7 @@ package config
 
 import io.github.cdimascio.dotenv.Dotenv
 import no.uyqn.config.Configuration
+import no.uyqn.config.EnvironmentalVariable
 import no.uyqn.config.MissingEnvironmentalKeyException
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertThrows
@@ -22,7 +23,7 @@ class ConfigurationTest {
 
     @Test
     fun `should return environment variable when key is present`() {
-        val key = Configuration.OPENAI_API_KEY
+        val key = EnvironmentalVariable.OPENAI_API_KEY
         val expectedValue = "my-secret-api-key"
 
         Mockito.`when`(dotenv[key]).thenReturn(expectedValue)
@@ -34,7 +35,7 @@ class ConfigurationTest {
 
     @Test
     fun `should throw MissingEnvironmentalKeyException when key is missing`() {
-        val key = Configuration.OPENAI_API_KEY
+        val key = EnvironmentalVariable.OPENAI_API_KEY
 
         Mockito.`when`(dotenv[key]).thenReturn(null)
 
@@ -44,5 +45,11 @@ class ConfigurationTest {
             }
 
         assertTrue(exception.toString().contains(key))
+    }
+
+    @Test
+    fun `should create HttpClient`() {
+        val httpClient = configuration.createHttpClient()
+        assertTrue(httpClient.engine.toString().contains("CIO"))
     }
 }
