@@ -1,4 +1,4 @@
-package no.uyqn.openai.clients.models
+package no.uyqn.openai.clients.data
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -12,17 +12,8 @@ object MessageRole {
 @Serializable
 data class Message(
     val role: String,
-    var content: String,
-) {
-    init {
-        val regex = Regex("```(?:plaintext\\n|\\n)([\\s\\S]*?)```")
-        content = regex
-            .find(content)
-            ?.groupValues
-            ?.get(1)
-            ?.trim() ?: content
-    }
-}
+    val content: String,
+)
 
 @Serializable
 data class ChatRequest(

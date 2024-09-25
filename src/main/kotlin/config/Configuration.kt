@@ -23,5 +23,6 @@ class Configuration(
                     },
                 )
             }
+            expectSuccess = true
         }
 }

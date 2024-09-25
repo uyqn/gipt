@@ -1,30 +1,32 @@
 package no.uyqn
 
 import io.github.cdimascio.dotenv.dotenv
+import io.ktor.client.plugins.ClientRequestException
 import kotlinx.coroutines.runBlocking
 import no.uyqn.config.Configuration
 import no.uyqn.git.GitFacade
+import no.uyqn.git.GitUtils
 import no.uyqn.openai.clients.OpenAiClient
-import no.uyqn.openai.clients.models.ChatRequest
-import no.uyqn.openai.clients.models.Message
-import no.uyqn.openai.clients.models.MessageRole
+import no.uyqn.openai.clients.data.ChatRequest
+import no.uyqn.openai.clients.data.Message
+import no.uyqn.openai.clients.data.MessageRole
 import org.eclipse.jgit.api.Git
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder
 import java.io.File
 
 val prompt =
     """
-    Generate a commit message following the conventional commit format based on the following git diff --cached output:
+    Generate a commit message following the Conventional Commits format based on this git diff --cached output:
     """.trimIndent()
-val additionalPrompt =
+/*val additionalPrompt =
     """
-    Only provide the commit message in its entirety in the style of
+    Only provide the commit message in its entirety following the Conventional Commits format:
     <type>[optional scope]: <description>
 
     [optional body]
 
     [optional footer(s)]
-    """.trimIndent()
+    """.trimIndent()*/
 
 fun main(args: Array<String>) =
     runBlocking {
@@ -39,8 +41,17 @@ fun main(args: Array<String>) =
         }
 
         val client = OpenAiClient.create(config, devMode = args.contains("--dev"))
-        val chatRequest = ChatRequest(messages = listOf(Message(role = MessageRole.USER, content = "$prompt\n$diff\n$additionalPrompt")))
-        val response = client.chat(chatRequest)
+        val content = "$prompt\n$diff"
+        val chatRequest = ChatRequest(messages = listOf(Message(role = MessageRole.USER, content = content)))
 
-        response.choices.map { it.message.content }.forEach { println(it) }
+        try {
+            val response = client.chat(chatRequest)
+            response.choices.map { it.message.content }.forEach {
+                println(it)
+                println(GitUtils.extractGitCommitMessage(it))
+            }
+        } catch (e: ClientRequestException) {
+            println("Response: ${e.response}")
+            println("Message: ${e.message}")
+        }
     }

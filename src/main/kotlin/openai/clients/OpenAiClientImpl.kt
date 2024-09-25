@@ -10,9 +10,9 @@ import kotlinx.serialization.Serializable
 import no.uyqn.config.Configuration
 import no.uyqn.config.EnvironmentalVariable
 import no.uyqn.openai.OpenAiModel
-import no.uyqn.openai.clients.models.ChatRequest
-import no.uyqn.openai.clients.models.ChatResponse
-import no.uyqn.openai.clients.models.Message
+import no.uyqn.openai.clients.data.ChatRequest
+import no.uyqn.openai.clients.data.ChatResponse
+import no.uyqn.openai.clients.data.Message
 
 class OpenAiClientImpl(
     private val configuration: Configuration,

@@ -2,3 +2,4 @@ codecov:
   enabled: true
   ignore:
     - "src/main/kotlin/openai/clients/data/ChatCompletion.kt"
+    - "src/main/kotlin/openai/clients/MockOpenAiClientImpl.kt"
