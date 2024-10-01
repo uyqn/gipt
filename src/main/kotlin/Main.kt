@@ -16,7 +16,7 @@ import java.io.File
 
 val prompt =
     """
-    Generate a commit message following the Conventional Commits format based on this git diff --cached output:
+    Generate a commit message following the Conventional Commits format based on the provided git diff --cached output
     """.trimIndent()
 /*val additionalPrompt =
     """
@@ -41,8 +41,14 @@ fun main(args: Array<String>) =
         }
 
         val client = OpenAiClient.create(config, devMode = args.contains("--dev"))
-        val content = "$prompt\n$diff"
-        val chatRequest = ChatRequest(messages = listOf(Message(role = MessageRole.USER, content = content)))
+        val chatRequest =
+            ChatRequest(
+                messages =
+                    listOf(
+                        Message(role = MessageRole.SYSTEM, content = prompt),
+                        Message(role = MessageRole.USER, content = diff),
+                    ),
+            )
 
         try {
             val response = client.chat(chatRequest)
