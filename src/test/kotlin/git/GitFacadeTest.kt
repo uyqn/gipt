@@ -25,7 +25,7 @@ class GitFacadeTest {
 
     @Test
     fun `getDiff should return empty if nothing is committed for staging`() {
-        val diff = gitFacade.getDiff()
+        val diff = gitFacade.diff
         assertTrue(diff.isEmpty(), "Expected empty diff, but got:\n$diff")
     }
 
@@ -35,7 +35,7 @@ class GitFacadeTest {
         file.writeText("Hello, World!")
         git.add().addFilepattern("file.txt").call()
 
-        val diff = gitFacade.getDiff()
+        val diff = gitFacade.diff
         assertTrue(diff.isNotEmpty())
     }
 }

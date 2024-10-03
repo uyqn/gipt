@@ -18,7 +18,7 @@ class ConfigurationTest {
     @BeforeEach
     fun setUp() {
         dotenv = Mockito.mock(Dotenv::class.java)
-        configuration = Configuration(dotenv)
+        configuration = Configuration(pwd = ".", dotenv = dotenv)
     }
 
     @Test
