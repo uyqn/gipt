@@ -3,7 +3,7 @@ package no.uyqn.gipt
 import io.ktor.client.plugins.ClientRequestException
 import no.uyqn.args.GiptFlags
 import no.uyqn.config.Configuration
-import no.uyqn.git.GitUtils
+import no.uyqn.openai.OpenAiUtils
 import no.uyqn.openai.clients.OpenAiClient
 import no.uyqn.openai.clients.data.ChatRequest
 import no.uyqn.openai.clients.data.Message
@@ -41,15 +41,17 @@ class GiptCommit(
         try {
             val response = client.chat(chatRequest)
             response.choices.map { it.message.content }.forEach {
-                logger.info("OpenAIs generated response: \n$it")
-                val commitMessage = GitUtils.extractGitCommitMessage(it)
-                configuration.git.commit(commitMessage)
+                logger.debug("OpenAIs generated response: \n${it.prependIndent("|    ").trimMargin()}")
+                val commitMessage = OpenAiUtils.extractCodeBlock(it)
+                configuration.git.commit(commitMessage).let { commit ->
+                    logger.debug("Commit created: \n${configuration.git.committedMessage(commit)}")
+                }
             }
         } catch (e: ClientRequestException) {
-            println("Response: ${e.response}")
-            println("Message: ${e.message}")
-            println("Cause: ${e.cause}")
-            println("StackTrace: ${e.stackTrace}")
+            logger.error("Response: ${e.response}")
+            logger.error("Message: ${e.message}")
+            logger.error("Cause: ${e.cause}")
+            logger.error("StackTrace: ${e.stackTrace}")
             throw e
         }
     }
