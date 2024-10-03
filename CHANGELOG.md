@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/uyqn/gipt/compare/v1.0.0...v1.0.1) (2024-10-03)
+
+
+### Bug Fixes
+
+* **workflow:** restrict issue link check to pull requests targeting main branch ([98645e3](https://github.com/uyqn/gipt/commit/98645e3bcd6b5dbb4165cba6f06a5c1051419ec1))
+
 # 1.0.0 (2024-10-03)
 
 
