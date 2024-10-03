@@ -1,6 +1,12 @@
 codecov:
-  enabled: false
-  ignore:
-    - "src/main/kotlin/openai/clients/data/ChatCompletion.kt"
-    - "src/main/kotlin/openai/clients/MockOpenAiClientImpl.kt"
-    - "src/main/kotlin/openai/clients/*"
+  notify:
+    manual_trigger: true
+coverage:
+  status:
+    project:
+        default:
+          informational: true
+ignore:
+  - "src/main/kotlin/openai/clients/data/ChatCompletion.kt"
+  - "src/main/kotlin/openai/clients/MockOpenAiClientImpl.kt"
+  - "src/main/kotlin/openai/clients/*"
