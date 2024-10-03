@@ -8,10 +8,6 @@ import no.uyqn.config.Configuration
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
-val prompt =
-    """
-    Generate a commit message following the Conventional Commits format based on the provided git diff --cached output
-    """.trimIndent()
 val logger: Logger = LoggerFactory.getLogger("Main")
 
 fun main(args: Array<String>) =

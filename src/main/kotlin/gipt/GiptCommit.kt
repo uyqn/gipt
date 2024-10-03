@@ -8,7 +8,6 @@ import no.uyqn.openai.clients.OpenAiClient
 import no.uyqn.openai.clients.data.ChatRequest
 import no.uyqn.openai.clients.data.Message
 import no.uyqn.openai.clients.data.MessageRole
-import no.uyqn.prompt
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -16,11 +15,16 @@ class GiptCommit(
     override val configuration: Configuration,
 ) : GiptCommand {
     private val logger: Logger = LoggerFactory.getLogger(GiptCommit::class.java)
+    private val prompt =
+        """
+        Generate a commit message following the Conventional Commits format based on the provided git diff --cached output
+        """.trimIndent()
 
     override suspend fun execute(flags: Set<GiptFlags>) {
         val diff = configuration.git.diff
 
         if (diff.isEmpty()) {
+            logger.info("No changes found in staging area, add changes to staging area with 'git add' before running this command")
             return
         }
 
