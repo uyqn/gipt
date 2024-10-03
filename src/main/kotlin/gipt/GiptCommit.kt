@@ -3,7 +3,7 @@ package no.uyqn.gipt
 import io.ktor.client.plugins.ClientRequestException
 import no.uyqn.args.GiptFlags
 import no.uyqn.config.Configuration
-import no.uyqn.git.GitUtils
+import no.uyqn.openai.OpenAiUtils
 import no.uyqn.openai.clients.OpenAiClient
 import no.uyqn.openai.clients.data.ChatRequest
 import no.uyqn.openai.clients.data.Message
@@ -44,9 +44,9 @@ class GiptCommit(
             val response = client.chat(chatRequest)
             response.choices.map { it.message.content }.forEach {
                 logger.info("OpenAIs generated response: \n${it.prependIndent("|    ").trimMargin()}")
-                val commitMessage = GitUtils.extractGitCommitMessage(it)
+                val commitMessage = OpenAiUtils.extractCodeBlock(it)
                 configuration.git.commit(commitMessage).let { commit ->
-                    logger.info("Committed created: \n${committedMessage(commit)}")
+                    logger.info("Commit created: \n${committedMessage(commit)}")
                 }
             }
         } catch (e: ClientRequestException) {
