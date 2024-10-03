@@ -2,10 +2,6 @@ package no.uyqn.openai.clients
 
 import io.ktor.client.call.body
 import io.ktor.client.request.header
-import io.ktor.client.statement.bodyAsText
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonObject
-import kotlinx.serialization.json.jsonObject
 import no.uyqn.config.Configuration
 import no.uyqn.config.EnvironmentalVariable
 import no.uyqn.http.HttpService
@@ -24,8 +20,20 @@ class AzureOpenAiClientImpl(
     private val apiVersion = configuration.getEnvironmentVariable(EnvironmentalVariable.AZURE_OPENAI_API_VERSION)
     private val httpService = HttpService()
 
+    init {
+        logger.debug(
+            """
+            |Azure OpenAI client initialized with:
+            |    apiKey: $apiKey
+            |    resource: $resource
+            |    endpoint: $endpoint
+            |    apiVersion: $apiVersion
+            """.trimMargin(),
+        )
+    }
+
     override suspend fun chat(request: ChatRequest): ChatResponse {
-        logger.info(
+        logger.debug(
             "Azure OpenAI request: \n${request.messages
                 .joinToString(separator = "") { it.content + "\n" }
                 .prependIndent("|    ")
@@ -35,15 +43,6 @@ class AzureOpenAiClientImpl(
             httpService
                 .post(url = "$endpoint/chat/completions?api-version=$apiVersion", body = request) {
                     header("api-key", apiKey)
-                }.let {
-                    val jsonFormatter = Json { prettyPrint = true }
-                    val response =
-                        jsonFormatter.encodeToString(
-                            JsonObject.serializer(),
-                            jsonFormatter.parseToJsonElement(it.bodyAsText()).jsonObject,
-                        )
-                    logger.info("Azure OpenAI response: \n${response.prependIndent("|    ").trimMargin()}")
-                    it
                 }
 
         return response.body()
