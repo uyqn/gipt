@@ -13,9 +13,9 @@ interface OpenAiClient {
         fun create(
             configuration: Configuration,
             model: String = OpenAiModel.GPT4O_MINI,
-            devMode: Boolean = false,
+            debug: Boolean = false,
         ): OpenAiClient {
-            if (devMode) {
+            if (debug) {
                 return MockOpenAiClientImpl(model)
             }
             if (isAzureOpenAiApiKey(configuration)) {

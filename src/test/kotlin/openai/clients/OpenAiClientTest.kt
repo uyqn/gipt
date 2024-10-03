@@ -18,7 +18,7 @@ class OpenAiClientTest {
         val configuration: Configuration = mock()
 
         // When
-        val client = OpenAiClient.create(configuration, devMode = true)
+        val client = OpenAiClient.create(configuration, debug = true)
 
         // Then
         assertTrue(client is MockOpenAiClientImpl)
@@ -33,7 +33,7 @@ class OpenAiClientTest {
             .thenReturn("sk-somerandomopenaiapikey123")
 
         // When
-        val client = OpenAiClient.create(configuration, devMode = false)
+        val client = OpenAiClient.create(configuration, debug = false)
 
         // Then
         assertTrue(client is OpenAiClientImpl)
@@ -48,7 +48,7 @@ class OpenAiClientTest {
             .thenReturn("somerandomazureopenaiapikey123")
 
         // When
-        val client = OpenAiClient.create(configuration, devMode = false)
+        val client = OpenAiClient.create(configuration, debug = false)
 
         // Then
         assertTrue(client is AzureOpenAiClientImpl)

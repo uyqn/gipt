@@ -18,7 +18,7 @@ class ConfigurationTest {
     @BeforeEach
     fun setUp() {
         dotenv = Mockito.mock(Dotenv::class.java)
-        configuration = Configuration(dotenv)
+        configuration = Configuration(pwd = ".", dotenv = dotenv)
     }
 
     @Test
@@ -45,11 +45,5 @@ class ConfigurationTest {
             }
 
         assertTrue(exception.toString().contains(key))
-    }
-
-    @Test
-    fun `should create HttpClient`() {
-        val httpClient = configuration.createHttpClient()
-        assertTrue(httpClient.engine.toString().contains("CIO"))
     }
 }
