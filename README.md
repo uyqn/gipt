@@ -73,5 +73,5 @@ Clone the repository using either of the following commands in your terminal (e.
 ## Usage
 If you have been following the instructions provided in the [installation](#installation) section, you can now run the project using the following command:
 ```bash
-gipt
+gipt commit
 ```
