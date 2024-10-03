@@ -4,6 +4,7 @@ import org.eclipse.jgit.api.Git
 import org.eclipse.jgit.api.errors.NoHeadException
 import org.eclipse.jgit.diff.DiffFormatter
 import org.eclipse.jgit.dircache.DirCacheIterator
+import org.eclipse.jgit.revwalk.RevCommit
 import org.eclipse.jgit.treewalk.CanonicalTreeParser
 import java.io.ByteArrayOutputStream
 
@@ -42,5 +43,5 @@ class GitFacade(
             return outputStream.toString("UTF-8")
         }
 
-    fun commit(message: String) = git.commit().setMessage(message).call()
+    fun commit(message: String): RevCommit = git.commit().setMessage(message).call()
 }
