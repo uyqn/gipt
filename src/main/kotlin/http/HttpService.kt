@@ -44,9 +44,6 @@ class HttpService {
                 block()
             }
         } catch (e: ClientRequestException) {
-            logger.error("message: ${e.message}")
-            logger.error("cause: ${e.cause}")
-            logger.error("response: ${e.response}")
             throw e
         } finally {
             client.close()
