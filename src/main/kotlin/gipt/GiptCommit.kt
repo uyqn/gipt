@@ -37,7 +37,7 @@ class GiptCommit(
         try {
             val response = client.chat(chatRequest)
             response.choices.map { it.message.content }.forEach {
-                logger.info(it)
+                logger.info("OpenAIs generated response: \n$it")
                 val commitMessage = GitUtils.extractGitCommitMessage(it)
                 configuration.git.commit(commitMessage)
             }
