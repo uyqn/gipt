@@ -14,6 +14,7 @@ import java.io.ByteArrayOutputStream
 class GitFacade(
     private val git: Git,
 ) {
+    internal val repository = git.repository
     internal val diff: String
         get() {
             val outputStream = ByteArrayOutputStream()
