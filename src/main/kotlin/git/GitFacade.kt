@@ -7,6 +7,7 @@ import org.eclipse.jgit.dircache.DirCacheIterator
 import org.eclipse.jgit.revwalk.RevCommit
 import org.eclipse.jgit.treewalk.CanonicalTreeParser
 import java.io.ByteArrayOutputStream
+import java.text.SimpleDateFormat
 
 /**
  * A wrapper class for the JGit library.
@@ -45,4 +46,13 @@ class GitFacade(
         }
 
     fun commit(message: String): RevCommit = git.commit().setMessage(message).call()
+
+    fun committedMessage(commit: RevCommit): String =
+        """
+        |    commit ${commit.name}
+        |    Author: ${commit.authorIdent.name} <${commit.authorIdent.emailAddress}>
+        |    Date: ${SimpleDateFormat("EEE MMM dd HH:mm:ss yyyy Z").format(commit.commitTime * 1000L)}
+        
+        ${commit.fullMessage.prependIndent("|        ")}
+        """.trimMargin()
 }

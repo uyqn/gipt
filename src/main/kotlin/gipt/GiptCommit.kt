@@ -8,10 +8,8 @@ import no.uyqn.openai.clients.OpenAiClient
 import no.uyqn.openai.clients.data.ChatRequest
 import no.uyqn.openai.clients.data.Message
 import no.uyqn.openai.clients.data.MessageRole
-import org.eclipse.jgit.revwalk.RevCommit
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import java.text.SimpleDateFormat
 
 class GiptCommit(
     override val configuration: Configuration,
@@ -46,7 +44,7 @@ class GiptCommit(
                 logger.debug("OpenAIs generated response: \n${it.prependIndent("|    ").trimMargin()}")
                 val commitMessage = OpenAiUtils.extractCodeBlock(it)
                 configuration.git.commit(commitMessage).let { commit ->
-                    logger.debug("Commit created: \n${committedMessage(commit)}")
+                    logger.debug("Commit created: \n${configuration.git.committedMessage(commit)}")
                 }
             }
         } catch (e: ClientRequestException) {
@@ -57,13 +55,4 @@ class GiptCommit(
             throw e
         }
     }
-
-    private fun committedMessage(commit: RevCommit): String =
-        """
-        |    commit ${commit.name}
-        |    Author: ${commit.authorIdent.name} <${commit.authorIdent.emailAddress}>
-        |    Date: ${SimpleDateFormat("EEE MMM dd HH:mm:ss yyyy Z").format(commit.commitTime * 1000L)}
-        
-        ${commit.fullMessage.prependIndent("|        ")}
-        """.trimMargin()
 }
