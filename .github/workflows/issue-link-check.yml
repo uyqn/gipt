@@ -1,4 +1,4 @@
-name: Ensure PR is linked to an Issue
+name: issue-link-check
 
 on:
   pull_request:
