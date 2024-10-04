@@ -28,13 +28,11 @@ class Configuration(
 
     init {
         logger.debug("Running application from $pwd")
-        repositoryUserConfig("name")
-        repositoryUserConfig("email")
     }
 
     fun getEnvironmentVariable(key: String): String = dotenv[key] ?: throw MissingEnvironmentalKeyException(key)
 
-    private fun repositoryUserConfig(key: String): String? {
+    fun repositoryUserConfig(key: String): String? {
         val config = repository.config
         val value = config.getString("user", null, key)
         if (value != null) {
