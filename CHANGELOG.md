@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/uyqn/gipt/compare/v1.2.0...v1.2.1) (2024-10-04)
+
+
+### Bug Fixes
+
+* add --debug-jvm flag for debug mode in README instructions ([61748d4](https://github.com/uyqn/gipt/commit/61748d4d76a7c74e669ef4cc3365d9ad7bbfda0a))
+
 # [1.2.0](https://github.com/uyqn/gipt/compare/v1.1.0...v1.2.0) (2024-10-04)
 
 
