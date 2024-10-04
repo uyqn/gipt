@@ -72,3 +72,7 @@ kotlin {
 application {
     mainClass.set("no.uyqn.MainKt")
 }
+
+tasks.named<JavaExec>("run") {
+    standardInput = System.`in`
+}

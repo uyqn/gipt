@@ -25,14 +25,34 @@ class Configuration(
             throw e
         }
     val git = GitFacade(git = Git(repository))
-    private val username: String = repository.config.getString("user", null, "name")
-    private val email: String = repository.config.getString("user", null, "email")
 
     init {
         logger.debug("Running application from $pwd")
-        logger.debug("username: $username")
-        logger.debug("email: $email")
+        repositoryUserConfig("name")
+        repositoryUserConfig("email")
     }
 
     fun getEnvironmentVariable(key: String): String = dotenv[key] ?: throw MissingEnvironmentalKeyException(key)
+
+    private fun repositoryUserConfig(key: String): String? {
+        val config = repository.config
+        val value = config.getString("user", null, key)
+        if (value != null) {
+            return value
+        }
+
+        println("Repository user.$key has not been set")
+        print("Enter $key: ")
+        readln().let { input ->
+            if (input.isBlank()) {
+                logger.warn("Continuing application without setting user.$key")
+                return null
+            }
+            config.setString("user", null, key, input)
+            config.save().let {
+                logger.debug("git config --local user.{} \"{}\"", key, input)
+            }
+            return input
+        }
+    }
 }

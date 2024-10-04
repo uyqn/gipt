@@ -37,6 +37,7 @@ fun main(args: Array<String>) =
         }
 
         val config = Configuration(pwd = args[0])
+
         commands.forEach {
             it
                 .command(config)
