@@ -25,9 +25,13 @@ class Configuration(
             throw e
         }
     val git = GitFacade(git = Git(repository))
+    private val username: String = repository.config.getString("user", null, "name")
+    private val email: String = repository.config.getString("user", null, "email")
 
     init {
         logger.debug("Running application from $pwd")
+        logger.debug("username: $username")
+        logger.debug("email: $email")
     }
 
     fun getEnvironmentVariable(key: String): String = dotenv[key] ?: throw MissingEnvironmentalKeyException(key)
