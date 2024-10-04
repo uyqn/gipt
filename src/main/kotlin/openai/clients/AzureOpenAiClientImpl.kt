@@ -36,7 +36,7 @@ class AzureOpenAiClientImpl(
         logger.debug(
             "Azure OpenAI request: \n${request.messages
                 .joinToString(separator = "") { it.content + "\n" }
-                .prependIndent("|    ")
+                .prependIndent("|   ")
                 .trimMargin()}",
         )
         val response =

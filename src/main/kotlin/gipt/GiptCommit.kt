@@ -41,10 +41,10 @@ class GiptCommit(
         try {
             val response = client.chat(chatRequest)
             response.choices.map { it.message.content }.forEach {
-                logger.debug("OpenAIs generated response: \n${it.prependIndent("|    ").trimMargin()}")
+                logger.debug("OpenAIs generated response: \n${it.prependIndent("|   ").trimMargin()}")
                 val commitMessage = OpenAiUtils.extractCodeBlock(it)
                 configuration.git.commit(commitMessage).let { commit ->
-                    logger.debug("Commit created: \n${configuration.git.committedMessage(commit)}")
+                    println("Commit created: \n${configuration.git.committedMessage(commit)}")
                 }
             }
         } catch (e: ClientRequestException) {

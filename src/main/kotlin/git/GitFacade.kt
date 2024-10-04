@@ -15,7 +15,6 @@ import java.text.SimpleDateFormat
 class GitFacade(
     private val git: Git,
 ) {
-    internal val repository = git.repository
     internal val diff: String
         get() {
             val outputStream = ByteArrayOutputStream()
@@ -53,6 +52,8 @@ class GitFacade(
         |    Author: ${commit.authorIdent.name} <${commit.authorIdent.emailAddress}>
         |    Date: ${SimpleDateFormat("EEE MMM dd HH:mm:ss yyyy Z").format(commit.commitTime * 1000L)}
         
-        ${commit.fullMessage.prependIndent("|        ")}
+        ${commit.fullMessage.prependIndent("|       ")}
         """.trimMargin()
+
+    override fun toString(): String = "$git"
 }
