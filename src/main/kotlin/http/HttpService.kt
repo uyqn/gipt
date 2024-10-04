@@ -53,7 +53,7 @@ class HttpService {
                             JsonObject.serializer(),
                             jsonFormatter.parseToJsonElement(it.bodyAsText()).jsonObject,
                         )
-                    logger.debug("Azure OpenAI response: \n${response.prependIndent("|    ").trimMargin()}")
+                    logger.debug("Azure OpenAI response: \n${response.prependIndent("|   ").trimMargin()}")
                     it
                 }
         } catch (e: ClientRequestException) {

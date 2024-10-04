@@ -5,8 +5,8 @@
         </encoder>
     </appender>
 
-    <logger name="no.uyqn" level="DEBUG"/>
-    <logger name="Main" level="DEBUG"/>
+    <logger name="no.uyqn" level="ERROR"/>
+    <logger name="Main" level="ERROR"/>
 
     <root level="ERROR">
         <appender-ref ref="APPENDER"/>
