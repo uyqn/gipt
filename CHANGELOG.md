@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/uyqn/gipt/compare/v1.0.1...v1.1.0) (2024-10-04)
+
+
+### Features
+
+* **logging:** enhance logging levels and message formatting ([69792f2](https://github.com/uyqn/gipt/commit/69792f2e222a3c6232bc8c78099c280ce6a305f2))
+
 ## [1.0.1](https://github.com/uyqn/gipt/compare/v1.0.0...v1.0.1) (2024-10-03)
 
 
