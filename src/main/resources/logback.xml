@@ -5,10 +5,10 @@
         </encoder>
     </appender>
 
-    <logger name="no.uyqn" level="ERROR"/>
-    <logger name="Main" level="ERROR"/>
+    <logger name="no.uyqn" level="WARN"/>
+    <logger name="Main" level="WARN"/>
 
-    <root level="ERROR">
+    <root level="WARN">
         <appender-ref ref="APPENDER"/>
     </root>
 </configuration>

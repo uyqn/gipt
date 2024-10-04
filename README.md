@@ -49,12 +49,19 @@ Clone the repository using either of the following commands in your terminal (e.
         ```bash
         echo 'export PATH=$HOME/bin:/usr/local/bin:$PATH' >> ~/.bashrc
         ```
-7. Create a script (e.g gipt) that will be used to run the project in the bin directory:
+7. Create a script (e.g. gipt) that will be used to run the project in the bin directory:
     ```bash
    cat << EOF > ~/bin/gipt
     #!/bin/bash
 
-    $(pwd)/gradlew  -p $(pwd)/ run --args="\$(pwd) \$*"
+    # Check if --debug is in the arguments
+    if [[ "$*" == *"--debug"* ]]; then
+      # Run in debug mode
+      $(pwd)/gradlew  -p $(pwd)/ run --console=plain --args="\$(pwd) \$*"
+    else
+      # Run normally
+      $(pwd)/gradlew  -p $(pwd)/ run --console=plain --args="\$(pwd) \$*"
+    fi
     EOF
     ```
 8. Make the script executable:

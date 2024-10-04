@@ -37,6 +37,9 @@ fun main(args: Array<String>) =
         }
 
         val config = Configuration(pwd = args[0])
+        config.repositoryUserConfig("name")
+        config.repositoryUserConfig("email")
+
         commands.forEach {
             it
                 .command(config)

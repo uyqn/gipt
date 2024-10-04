@@ -31,4 +31,26 @@ class Configuration(
     }
 
     fun getEnvironmentVariable(key: String): String = dotenv[key] ?: throw MissingEnvironmentalKeyException(key)
+
+    fun repositoryUserConfig(key: String): String? {
+        val config = repository.config
+        val value = config.getString("user", null, key)
+        if (value != null) {
+            return value
+        }
+
+        println("Repository user.$key has not been set")
+        print("Enter $key: ")
+        readln().let { input ->
+            if (input.isBlank()) {
+                logger.warn("Continuing application without setting user.$key")
+                return null
+            }
+            config.setString("user", null, key, input)
+            config.save().let {
+                logger.debug("git config --local user.{} \"{}\"", key, input)
+            }
+            return input
+        }
+    }
 }
