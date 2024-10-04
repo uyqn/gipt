@@ -57,7 +57,7 @@ Clone the repository using either of the following commands in your terminal (e.
     # Check if --debug is in the arguments
     if [[ "$*" == *"--debug"* ]]; then
       # Run in debug mode
-      $(pwd)/gradlew  -p $(pwd)/ run --console=plain --args="\$(pwd) \$*"
+      $(pwd)/gradlew  -p $(pwd)/ run --console=plain --debug-jvm --args="\$(pwd) \$*"
     else
       # Run normally
       $(pwd)/gradlew  -p $(pwd)/ run --console=plain --args="\$(pwd) \$*"
