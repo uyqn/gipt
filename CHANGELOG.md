@@ -1,3 +1,13 @@
+# [1.2.0](https://github.com/uyqn/gipt/compare/v1.1.0...v1.2.0) (2024-10-04)
+
+
+### Features
+
+* add standard input support for run task and improve user config handling ([c304c4a](https://github.com/uyqn/gipt/commit/c304c4aff5f9e876d57d087546cf94534f5bc45d))
+* **config:** add username and email logging in Configuration initialization ([899b449](https://github.com/uyqn/gipt/commit/899b449d693a3fc2b717eaf89e6e71c4b5a78988))
+* **config:** enable repository user configuration for name and email ([e269ac2](https://github.com/uyqn/gipt/commit/e269ac2ab7143056a2a1ad52a899017eb77a1b1a))
+* enhance gipt script with debug mode support ([d40f098](https://github.com/uyqn/gipt/commit/d40f0985dca2aa59b902c5063f3caec7ed4ae61b))
+
 # [1.1.0](https://github.com/uyqn/gipt/compare/v1.0.1...v1.1.0) (2024-10-04)
 
 
