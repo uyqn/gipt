@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/uyqn/gipt/compare/v1.2.1...v1.3.0) (2024-11-01)
+
+
+### Features
+
+* **prompt:** update commit message generation details ([0078ff0](https://github.com/uyqn/gipt/commit/0078ff0078177ee3be8035e9ebf14c3b1246bd38))
+
 ## [1.2.1](https://github.com/uyqn/gipt/compare/v1.2.0...v1.2.1) (2024-10-04)
 
 
