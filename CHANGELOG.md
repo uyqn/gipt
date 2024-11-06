@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/uyqn/gipt/compare/v1.3.0...v1.4.0) (2024-11-06)
+
+
+### Features
+
+* **commit:** add branch information to commit message prompt ([791273e](https://github.com/uyqn/gipt/commit/791273ec9e872c9fb2761cbb7d32212b665b1a72))
+
 # [1.3.0](https://github.com/uyqn/gipt/compare/v1.2.1...v1.3.0) (2024-11-01)
 
 
