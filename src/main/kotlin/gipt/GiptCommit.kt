@@ -17,6 +17,7 @@ class GiptCommit(
     private val logger: Logger = LoggerFactory.getLogger(GiptCommit::class.java)
     private val prompt =
         """
+        We are currently doing some work on the following branch: ${configuration.git.branch}.
         Generate a clear commit message, including as many details as possible, following the Conventional Commits format based on the provided git diff --cached output
         """.trimIndent()
 

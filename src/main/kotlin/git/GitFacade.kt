@@ -44,6 +44,8 @@ class GitFacade(
             return outputStream.toString("UTF-8")
         }
 
+    val branch = git.repository.branch
+
     fun commit(message: String): RevCommit = git.commit().setMessage(message).call()
 
     fun committedMessage(commit: RevCommit): String =
