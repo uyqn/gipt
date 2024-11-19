@@ -1,13 +1,8 @@
 package no.uyqn.gipt
 
-import io.ktor.client.plugins.ClientRequestException
 import no.uyqn.args.GiptFlags
 import no.uyqn.config.Configuration
 import no.uyqn.openai.OpenAiUtils
-import no.uyqn.openai.clients.OpenAiClient
-import no.uyqn.openai.clients.data.ChatRequest
-import no.uyqn.openai.clients.data.Message
-import no.uyqn.openai.clients.data.MessageRole
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -29,31 +24,12 @@ class GiptCommit(
             return
         }
 
-        val client = OpenAiClient.create(configuration, debug = flags.contains(GiptFlags.DEBUG))
-        val chatRequest =
-            ChatRequest(
-                messages =
-                    listOf(
-                        Message(role = MessageRole.SYSTEM, content = prompt),
-                        Message(role = MessageRole.USER, content = diff),
-                    ),
-            )
-
-        try {
-            val response = client.chat(chatRequest)
-            response.choices.map { it.message.content }.forEach {
-                logger.debug("OpenAIs generated response: \n${it.prependIndent("|   ").trimMargin()}")
-                val commitMessage = OpenAiUtils.extractCodeBlock(it)
-                configuration.git.commit(commitMessage).let { commit ->
-                    println("Commit created: \n${configuration.git.committedMessage(commit)}")
-                }
+        prompt(prompt, diff) {
+            logger.debug("OpenAIs generated response: \n${it.prependIndent("|   ").trimMargin()}")
+            val commitMessage = OpenAiUtils.extractCodeBlock(it)
+            configuration.git.commit(commitMessage).let { commit ->
+                println("Commit created: \n${configuration.git.committedMessage(commit)}")
             }
-        } catch (e: ClientRequestException) {
-            logger.error("Response: ${e.response}")
-            logger.error("Message: ${e.message}")
-            logger.error("Cause: ${e.cause}")
-            logger.error("StackTrace: ${e.stackTrace}")
-            throw e
         }
     }
 }
