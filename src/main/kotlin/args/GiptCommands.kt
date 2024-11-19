@@ -3,6 +3,7 @@ package no.uyqn.args
 import no.uyqn.config.Configuration
 import no.uyqn.gipt.GiptCommand
 import no.uyqn.gipt.GiptCommit
+import no.uyqn.gipt.GiptPullRequest
 
 enum class GiptCommands(
     override val arg: String,
@@ -11,6 +12,7 @@ enum class GiptCommands(
     override val info: String = "",
 ) : GiptArgument {
     COMMIT(arg = "commit", command = { GiptCommit(it) }, flags = setOf(GiptFlags.PREVIEW)),
+    PULL_REQUEST(arg = "pr", command = { GiptPullRequest(it) }, flags = setOf(GiptFlags.PREVIEW)),
     ;
 
     companion object {
