@@ -13,7 +13,7 @@ class GiptPullRequest(
     private val prompt =
         """
         We are currently doing some work on the following branch: ${configuration.git.branch}.
-        Generate a pull request title that follows the Conventional Commits guidelines and a pull request description based on the provided git commits.
+        Generate a pull request title that follows the Conventional Commits guidelines and a detailed pull request description based on the provided git commits.
         """.trimIndent()
 
     override suspend fun execute(flags: Set<GiptFlags>) {
